@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Sites.Reviews — Trust Score",
+  "short_name": "Sites.Reviews",
+  "version": "0.1.0",
+  "description": "Показывает Trust Score сайта из каталога Sites.Reviews при заходе на любой домен.",
+  "default_locale": "ru",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://sites.reviews/*"
+  ],
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "options_page": "src/options.html",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sites-reviews@gusev.biz",
+      "strict_min_version": "115.0"
+    }
+  }
+}
