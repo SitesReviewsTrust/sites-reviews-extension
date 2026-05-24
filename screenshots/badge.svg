@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <rect width="640" height="400" fill="#EEF3FB"/>
+  <g transform="translate(60, 60)" filter="drop-shadow(0 4 12 rgba(15,23,42,0.12))">
+    <rect width="520" height="280" rx="12" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <circle cx="20" cy="20" r="6" fill="#EF4444"/>
+    <circle cx="40" cy="20" r="6" fill="#FFB02E"/>
+    <circle cx="60" cy="20" r="6" fill="#2ECC71"/>
+    <rect x="90" y="10" width="320" height="20" rx="10" fill="#F1F4F6"/>
+    <text x="105" y="25" font-family="monospace" font-size="11" fill="#475569">🔒 ozon.ru</text>
+    <rect x="430" y="6" width="80" height="28" rx="6" fill="#F1F4F6"/>
+    <rect x="442" y="12" width="16" height="16" rx="3" fill="#2A7BFF"/>
+    <circle cx="464" cy="16" r="9" fill="#2ECC71"/>
+    <text x="464" y="20" text-anchor="middle" font-size="9" font-weight="700" fill="#FFFFFF" font-family="Inter, sans-serif">8.4</text>
+    <text x="475" y="22" font-family="Inter, sans-serif" font-size="11" fill="#64748B">extensions</text>
+
+    <text x="40" y="80" font-family="Inter, sans-serif" font-size="14" fill="#94A3B8">Бейдж на иконке отображается автоматически</text>
+    <text x="40" y="105" font-family="Inter, sans-serif" font-size="14" fill="#94A3B8">при заходе на любой сайт.</text>
+
+    <g transform="translate(40, 140)">
+      <circle cx="20" cy="20" r="20" fill="#2ECC71"/>
+      <text x="20" y="25" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">8.4</text>
+      <text x="55" y="18" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#17212B">Высокое доверие</text>
+      <text x="55" y="32" font-family="Inter, sans-serif" font-size="11" fill="#64748B">trust_score ≥ 7.5</text>
+    </g>
+
+    <g transform="translate(180, 140)">
+      <circle cx="20" cy="20" r="20" fill="#FFB02E"/>
+      <text x="20" y="25" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">5.2</text>
+      <text x="55" y="18" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#17212B">Средне</text>
+      <text x="55" y="32" font-family="Inter, sans-serif" font-size="11" fill="#64748B">4–7.5</text>
+    </g>
+
+    <g transform="translate(320, 140)">
+      <circle cx="20" cy="20" r="20" fill="#EF4444"/>
+      <text x="20" y="25" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">2.1</text>
+      <text x="55" y="18" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#17212B">Подозрительно</text>
+      <text x="55" y="32" font-family="Inter, sans-serif" font-size="11" fill="#64748B">trust_score &lt; 4</text>
+    </g>
+
+    <text x="40" y="230" font-family="Inter, sans-serif" font-size="12" fill="#94A3B8">Клик на иконку → подробная карточка сайта с отзывами.</text>
+  </g>
+</svg>

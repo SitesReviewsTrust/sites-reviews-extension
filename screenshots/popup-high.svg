@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" width="480" height="480">
+  <rect width="480" height="480" fill="#EEF3FB"/>
+  <g transform="translate(80, 80)" filter="drop-shadow(0 8 24 rgba(15,23,42,0.18))">
+    <rect width="320" height="320" rx="14" fill="#FFFFFF" stroke="#E5E7EB"/>
+
+    <!-- header -->
+    <g transform="translate(20, 24)">
+      <circle cx="32" cy="32" r="28" fill="#2ECC71"/>
+      <text x="32" y="40" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">8.4</text>
+      <text x="80" y="26" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#17212B">OZON</text>
+      <text x="80" y="46" font-family="Inter, sans-serif" font-size="13" fill="#64748B">1 247 отзывов · 4.2/5</text>
+    </g>
+
+    <!-- buttons -->
+    <g transform="translate(20, 110)">
+      <rect width="280" height="40" rx="8" fill="#2A7BFF"/>
+      <text x="140" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF">Открыть профиль</text>
+    </g>
+    <g transform="translate(20, 160)">
+      <rect width="280" height="40" rx="8" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="140" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#17212B">Написать отзыв</text>
+    </g>
+
+    <!-- AI summary preview -->
+    <g transform="translate(20, 220)">
+      <text font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#94A3B8">AI-СВОДКА</text>
+      <text y="22" font-family="Inter, sans-serif" font-size="12" fill="#17212B">Большой ассортимент, быстрая доставка</text>
+      <text y="40" font-family="Inter, sans-serif" font-size="12" fill="#17212B">в большие города. Иногда проблемы с</text>
+      <text y="58" font-family="Inter, sans-serif" font-size="12" fill="#17212B">возвратом и поддержкой.</text>
+    </g>
+
+    <!-- footer -->
+    <line x1="20" y1="280" x2="300" y2="280" stroke="#E5E7EB"/>
+    <text x="20" y="302" font-family="Inter, sans-serif" font-size="11" fill="#94A3B8">Настройки</text>
+    <text x="300" y="302" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#2A7BFF" font-weight="600">Sites.Reviews</text>
+  </g>
+</svg>
