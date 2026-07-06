@@ -5,6 +5,18 @@
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/),
 проект следует [Semantic Versioning](https://semver.org/lang/ru/).
 
+## [1.1.0] - 2026-07-06
+
+### Изменено
+- Переход на **публичный API** `sites.reviews/api/public/v1/check` — расширение работает сразу, без регистрации и API-ключа.
+
+### Удалено
+- Страница настроек и хранение API-ключа; право `storage` (ничего не хранится на устройстве, только in-memory кэш).
+
+### Исправлено
+- Добавлены реальные PNG-иконки 16/48/128 (`icons/`) — раньше манифест ссылался на отсутствующие файлы.
+- Документация (README, PRIVACY) приведена в соответствие с моделью без ключа.
+
 ## [1.0.0] - 2026-05-24
 
 ### Добавлено
@@ -17,4 +29,4 @@
 - Брендовые SVG-иконки 16/48/128 PNG
 - Поддержка i18n (RU primary, EN опционально через manifest default_locale)
 
-[1.0.0]: https://github.com/DeFiTON/sites-reviews-extension/releases/tag/v1.0.0
+[1.0.0]: https://github.com/SitesReviewsTrust/sites-reviews-extension/releases/tag/v1.0.0

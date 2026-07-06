@@ -30,10 +30,11 @@
 - **Цветной бейдж** на иконке расширения: зелёный (≥7.5), жёлтый (4–7.5), красный (<4)
 - **Popup с деталями** — количество отзывов, средний рейтинг, ссылки на профиль и форму отзыва
 - **8 000+ проверенных бизнесов** — российских и международных
-- **AI-сводки** плюсов/минусов из реальных отзывов
-- **Проверка безопасности** домена (SSL, blacklist, возраст)
+- **Нет в каталоге?** — кнопка добавить сайт и оставить первый отзыв
 - **Manifest V3** — современный стандарт, лучшая производительность
-- **Приватность** — отправляется только домен текущей вкладки, без cookie/контента/трекинга
+- **Приватность** — отправляется только домен текущей вкладки, без ключей, cookie, контента и трекинга
+
+> Планируется: AI-сводки плюсов/минусов и блок проверки безопасности домена прямо в popup.
 
 ## 📸 Скриншоты
 
@@ -43,8 +44,7 @@
 <td><img src="screenshots/popup-high.svg" width="320" alt="Popup для надёжного сайта"><br><sub>Popup — надёжный сайт</sub></td>
 </tr>
 <tr>
-<td><img src="screenshots/popup-low.svg" width="320" alt="Popup для подозрительного сайта"><br><sub>Popup — подозрительный сайт</sub></td>
-<td><img src="screenshots/options.svg" width="320" alt="Страница настроек"><br><sub>Страница настроек</sub></td>
+<td colspan="2" align="center"><img src="screenshots/popup-low.svg" width="320" alt="Popup для подозрительного сайта"><br><sub>Popup — подозрительный сайт</sub></td>
 </tr>
 </table>
 
@@ -60,17 +60,14 @@
 2. Распакуйте в удобную папку
 3. Откройте `chrome://extensions` (или `edge://extensions`)
 4. Включите **«Режим разработчика»** в правом верхнем углу
-5. Нажмите **«Загрузить распакованное»** и выберите папку
-6. Правый клик на иконке → **«Параметры»** → вставьте API-ключ от Sites.Reviews
+5. Нажмите **«Загрузить распакованное»** и выберите папку — готово, ключи и настройка не нужны
 
 #### Firefox
 1. Скачайте архив, распакуйте
 2. Откройте `about:debugging` → **«Этот Firefox»**
 3. **«Загрузить временное дополнение»** → выберите `manifest.json`
-4. Вставьте API-ключ через значок-меню расширения → **«Параметры»**
 
-### API-ключ
-Получить бесплатно: [api@sites.reviews](mailto:api@sites.reviews) или через [Public API форму](https://sites.reviews/api).
+Расширение работает сразу: оно обращается к **публичному API** Sites.Reviews без регистрации и ключей.
 
 ## 🏗 Архитектура
 
@@ -82,12 +79,12 @@
                │
         background.js (MV3 service worker)
                │
-               │  POST /api/v1/check?domain=hostname
+               │  GET /api/public/v1/check?domain=hostname
                ▼
 ┌──────────────────────────────┐
-│   sites.reviews/api/v1       │  ← Public API с rate-limit per token
-│   trust_score, reviews count │
-│   pros[], cons[], AI-summary │
+│  sites.reviews/api/public/v1 │  ← публичный API, rate-limit per IP
+│   trust_score, avg_ratings,  │
+│   total_reviews, is_verified │
 └──────────────┬───────────────┘
                │
                ▼
@@ -102,7 +99,7 @@
 ## 🔐 Приватность
 
 - ✅ Отправляется только **hostname** активной вкладки
-- ✅ API-ключ хранится в `chrome.storage.sync` (синхронизируется с вашим аккаунтом браузера)
+- ✅ Ничего не хранится на устройстве (нет ключей, только in-memory кэш на 15 минут)
 - ❌ Никакого трекинга, аналитики, истории
 - ❌ Никаких cookies, контента страницы, full URL
 
@@ -111,7 +108,7 @@
 ## 🛠 Разработка
 
 ```bash
-git clone https://github.com/DeFiTON/sites-reviews-extension.git
+git clone https://github.com/SitesReviewsTrust/sites-reviews-extension.git
 cd sites-reviews-extension
 
 # Никаких build steps — Manifest V3 работает с raw ES modules

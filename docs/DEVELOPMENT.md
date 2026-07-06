@@ -3,7 +3,7 @@
 ## Quick start
 
 ```bash
-git clone https://github.com/DeFiTON/sites-reviews-extension.git
+git clone https://github.com/SitesReviewsTrust/sites-reviews-extension.git
 cd sites-reviews-extension
 ```
 

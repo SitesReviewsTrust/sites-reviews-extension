@@ -43,18 +43,6 @@ function renderNotFound(domain, data) {
   `;
 }
 
-function renderNoKey() {
-  $('#root').innerHTML = `
-    <div class="no-key">
-      Не задан API-ключ. <a href="#" id="goto-options">Открыть настройки</a> и вставьте ключ.
-    </div>
-  `;
-  $('#goto-options').addEventListener('click', e => {
-    e.preventDefault();
-    chrome.runtime.openOptionsPage();
-  });
-}
-
 function renderError(msg) {
   $('#root').innerHTML = `<div class="loading">Ошибка: ${msg}</div>`;
 }
@@ -68,10 +56,6 @@ async function init() {
   }
 
   const resp = await chrome.runtime.sendMessage({ type: 'getScore', domain });
-  if (resp?.error === 'no_key') {
-    renderNoKey();
-    return;
-  }
   if (resp?.error) {
     renderError(resp.error);
     return;
@@ -83,10 +67,4 @@ async function init() {
   renderScore(resp);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  init();
-  $('#open-options').addEventListener('click', e => {
-    e.preventDefault();
-    chrome.runtime.openOptionsPage();
-  });
-});
+document.addEventListener('DOMContentLoaded', init);

@@ -57,7 +57,7 @@ API-ключ выдаётся бесплатно: api@sites.reviews
 
 🌐 ССЫЛКИ
 • Сайт: https://sites.reviews
-• Исходники: github.com/DeFiTON/sites-reviews-extension
+• Исходники: github.com/SitesReviewsTrust/sites-reviews-extension
 • API docs: sites.reviews/api
 ```
 

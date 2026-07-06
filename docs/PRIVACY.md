@@ -1,15 +1,16 @@
 # Privacy Policy — Sites.Reviews Browser Extension
 
-**Effective date:** 2026-05-24
+**Effective date:** 2026-07-06
 
 ## TL;DR
 
-Расширение Sites.Reviews отправляет **только домен текущей вкладки** (например, `example.com`) на наш API для получения Trust Score. Никакого трекинга, аналитики, истории браузера или содержимого страниц мы не получаем.
+Расширение Sites.Reviews отправляет **только домен текущей вкладки** (например, `example.com`) на наш публичный API для получения Trust Score. Никакого трекинга, аналитики, истории браузера, содержимого страниц или личных данных мы не получаем. Регистрация и ключи не требуются.
 
 ## What we collect
 
-1. **Hostname активной вкладки** (например, `example.com`) — отправляется только когда вы открываете/переключаете на вкладку, исключительно для запроса оценки сайта в Sites.Reviews API.
-2. **Ваш API-ключ** — сохраняется в `chrome.storage.sync` (синхронизируется с вашим аккаунтом браузера, не отправляется никому кроме Sites.Reviews API).
+1. **Hostname активной вкладки** (например, `example.com`) — отправляется только когда вы открываете/переключаете вкладку, исключительно для запроса оценки сайта в публичном API Sites.Reviews.
+
+Больше ничего. Расширение не хранит никаких ваших данных.
 
 ## What we DO NOT collect
 
@@ -19,45 +20,42 @@
 - ❌ Историю браузера
 - ❌ Personally identifiable information (PII)
 - ❌ Аналитику или телеметрию
-- ❌ IP-адреса (вне rate-limit логирования на API стороне, см. ниже)
+- ❌ Аккаунты, логины, API-ключи
 
 ## Where data goes
 
-Расширение делает только один тип сетевого запроса:
+Расширение делает только один тип сетевого запроса — к публичному read-API без авторизации:
 
 ```
-GET https://sites.reviews/api/v1/check?domain=<HOSTNAME>
-Headers:
-  X-API-Key: <ваш ключ>
+GET https://sites.reviews/api/public/v1/check?domain=<HOSTNAME>
 ```
 
 Сервер Sites.Reviews:
-- Логирует request для rate-limit (per API-token, не per-user)
-- НЕ связывает request с вашим личностью или другими сервисами
+- Применяет обезличенный rate-limit (60 запросов/мин на IP), как любой публичный API
+- НЕ связывает запрос с вашей личностью или другими сервисами
 - Не передаёт данные третьим сторонам
 
 ## Storage
 
-- `chrome.storage.sync` — API-ключ (зашифрован Chrome на устройстве, синхронизируется через ваш Google-аккаунт если включена sync)
-- In-memory cache в service worker — последние 15 минут запросов domain→trust_score (сбрасывается при restart browser/service worker)
+- **In-memory cache** в service worker — последние 15 минут запросов `domain → trust_score` (сбрасывается при перезапуске браузера/воркера). На диск ничего не сохраняется.
 
 ## Permissions explanation
 
 | Permission | Why |
 |-----------|-----|
-| `tabs` | Read URL of active tab to extract hostname |
+| `tabs` | Read hostname of the active tab to look up its Trust Score |
 | `activeTab` | Same, restricted to user-initiated actions |
-| `storage` | Save your API key in browser-synced storage |
-| `host_permissions: https://sites.reviews/*` | Make HTTPS API requests to Sites.Reviews |
+| `host_permissions: https://sites.reviews/*` | Make HTTPS requests to the public Sites.Reviews API |
 
 Расширение **не имеет** permissions:
 - `<all_urls>` или `*://*/*` (нет доступа к контенту страниц)
 - `webRequest` / `webRequestBlocking` (не модифицирует запросы)
+- `storage` (ничего не хранит на устройстве)
 - `history`, `bookmarks`, `downloads`, `cookies`
 
 ## Open source
 
-Весь код — open source MIT: https://github.com/DeFiTON/sites-reviews-extension. Любой может проверить что мы реально делаем.
+Весь код — open source MIT: https://github.com/SitesReviewsTrust/sites-reviews-extension. Любой может проверить, что мы реально делаем.
 
 ## Контакт
 
@@ -66,4 +64,4 @@ General support: support@sites.reviews
 
 ## Изменения
 
-Все изменения этой политики коммитятся в git с timestamp — смотрите [git history](https://github.com/DeFiTON/sites-reviews-extension/commits/main/docs/PRIVACY.md).
+Все изменения этой политики коммитятся в git с timestamp — смотрите [git history](https://github.com/SitesReviewsTrust/sites-reviews-extension/commits/main/docs/PRIVACY.md).

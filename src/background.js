@@ -1,10 +1,6 @@
 // Background service worker: следит за активной вкладкой, обновляет badge.
-const API_BASE = 'https://sites.reviews/api/v1';
-
-async function getApiKey() {
-  const stored = await chrome.storage.sync.get('apiKey');
-  return stored.apiKey || '';
-}
+// Публичный read-API Sites.Reviews (без ключа, throttle 60/мин/IP).
+const API_BASE = 'https://sites.reviews/api/public/v1';
 
 async function setBadge(tabId, score) {
   if (score === null || score === undefined) {
@@ -30,11 +26,8 @@ const cache = new Map();
 async function fetchScore(domain) {
   if (cache.has(domain)) return cache.get(domain);
 
-  const apiKey = await getApiKey();
-  const headers = apiKey ? { 'X-API-Key': apiKey } : {};
   try {
-    const r = await fetch(`${API_BASE}/check?domain=${encodeURIComponent(domain)}`, { headers });
-    if (r.status === 401) return { error: 'no_key' };
+    const r = await fetch(`${API_BASE}/check?domain=${encodeURIComponent(domain)}`);
     if (!r.ok) return { error: 'http_' + r.status };
     const data = await r.json();
     cache.set(domain, data);
