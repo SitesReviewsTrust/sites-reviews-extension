@@ -14,7 +14,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Privacy](https://img.shields.io/badge/Tracking-none-brightgreen)](docs/PRIVACY.md)
 
-[Установить](#установка) · [Возможности](#возможности) · [API](https://sites.reviews/api) · [Сайт](https://sites.reviews) · [Wiki](../../wiki)
+[Установить](#установка) · [Возможности](#возможности) · [API](https://sites.reviews/api) · [Сайт](https://sites.reviews) · [Экосистема](https://github.com/SitesReviewsTrust/sites-reviews-docs)
 
 </div>
 
