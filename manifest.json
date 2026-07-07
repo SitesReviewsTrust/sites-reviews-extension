@@ -31,7 +31,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "sites-reviews@gusev.biz",
-      "strict_min_version": "115.0"
+      "strict_min_version": "121.0"
     }
   }
 }
