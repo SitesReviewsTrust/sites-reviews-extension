@@ -74,3 +74,38 @@ The single purpose of this extension is to show the Trust Score and review summa
 - [ ] Submit for review (typically 1–3 days)
 
 > After Chrome: the same ZIP works for Edge Add-ons and Opera; Firefox AMO uses the same build (see `build.sh`).
+
+---
+
+## Русская локализация листинга (добавить как Russian locale)
+
+### Name (≤45)
+`Sites.Reviews — Trust Score любого сайта`
+
+### Summary (≤132)
+`Показывает Trust Score сайта при заходе — на основе реальных отзывов из каталога Sites.Reviews. Бесплатно, без регистрации.`
+
+### Description
+```
+Sites.Reviews показывает, насколько сайту можно доверять — прямо во время сёрфинга.
+
+⭐ ЧТО ДЕЛАЕТ
+• Цветной бейдж с Trust Score на иконке для сайта, который вы открыли
+• Зелёный (≥7.5) — высокое доверие, жёлтый — средне, красный (<4) — низкое
+• Клик → детали: количество отзывов, средний рейтинг, ссылка на профиль
+• Сайта нет в каталоге? Один клик — добавить и оставить первый отзыв
+
+🔍 ОТКУДА ДАННЫЕ
+Каталог Sites.Reviews — тысячи сайтов и сервисов с реальными отзывами и рейтингами доверия.
+
+🔐 ПРИВАТНОСТЬ
+• Отправляется только имя хоста активной вкладки — чтобы узнать его оценку
+• Без ключа, без аккаунта, без настройки — работает сразу
+• Никакого трекинга, cookie, содержимого страниц и полных URL
+• Manifest V3, минимум прав, полностью открытый код
+
+🌐 ССЫЛКИ
+• Сайт: https://sites.reviews
+• Исходники: https://github.com/SitesReviewsTrust/sites-reviews-extension
+• Публичный API: https://sites.reviews/api
+```
