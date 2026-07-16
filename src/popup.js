@@ -23,6 +23,20 @@ function band(score) {
   return 'low';
 }
 
+// Короткое имя бренда: отсекаем описание после « — », « | », «·» и хвостовую пунктуацию.
+function shortName(name) {
+  let s = String(name || '').split(/\s[—–-]\s|[|·]/)[0].trim();
+  s = s.replace(/[.,;:]+$/, '').trim();
+  if (s.length > 34) s = s.slice(0, 33).trim() + '…';
+  return s || String(name || '').slice(0, 34);
+}
+
+// Есть ли содержательный текст (не пустой, не прочерк «–»/«-»/«нет»).
+function meaningful(s) {
+  const t = String(s || '').replace(/[-–—\s.,;:]/g, '').toLowerCase();
+  return t.length > 0 && t !== 'нет' && t !== 'no';
+}
+
 function starsHtml(n) {
   n = Math.round(Number(n) || 0);
   let out = '';
@@ -34,8 +48,8 @@ function starsHtml(n) {
 function reviewSnippet(r) {
   const clean = (s) => esc(String(s || '').replace(/\s+/g, ' ').trim());
   const parts = [];
-  if (r.pros) parts.push('<span class="p">+ ' + clean(r.pros).slice(0, 90) + '</span>');
-  if (r.cons) parts.push('<span class="c">− ' + clean(r.cons).slice(0, 90) + '</span>');
+  if (meaningful(r.pros)) parts.push('<span class="p">+ ' + clean(r.pros).slice(0, 90) + '</span>');
+  if (meaningful(r.cons)) parts.push('<span class="c">− ' + clean(r.cons).slice(0, 90) + '</span>');
   if (parts.length) return '<div class="rv-pc">' + parts.join('<br>') + '</div>';
   const body = clean(r.body || r.body_en);
   return body ? '<p class="rv-body">' + body + '</p>' : '';
@@ -52,7 +66,7 @@ function renderReviews(reviews) {
       ${reviewSnippet(r)}
       ${r.author ? `<div class="rv-auth">${esc(r.author)}</div>` : ''}
     </div>`).join('');
-  return `<div class="rv-h">Отзывы</div>${items}`;
+  return `<div class="sec-t">Отзывы</div>${items}`;
 }
 
 function renderBusiness(biz, reviews) {
@@ -69,7 +83,7 @@ function renderBusiness(biz, reviews) {
       <div class="circle ${b}">${Number(biz.trust_score).toFixed(1)}</div>
       <div class="hd-info">
         <div class="hd-name">
-          <span class="name-txt">${esc(biz.name)}</span>
+          <span class="name-txt">${esc(shortName(biz.name))}</span>
           ${biz.is_verified ? '<span class="verified" title="Проверено"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/></svg></span>' : ''}
         </div>
         <div class="hd-meta"><span class="stars">${starsHtml(rating)}</span> ${rating}/5 · ${biz.total_reviews} отзывов</div>
@@ -86,7 +100,7 @@ function renderBusiness(biz, reviews) {
     ${renderReviews(reviews)}
 
     <div class="rate">
-      <div class="rate-t">Оцените сайт</div>
+      <div class="rate-t">Поделитесь мнением об этом сайте</div>
       <div class="picker" id="picker">
         ${[1, 2, 3, 4, 5].map((i) => `<span data-v="${i}">★</span>`).join('')}
       </div>
