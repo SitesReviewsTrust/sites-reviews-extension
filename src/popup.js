@@ -23,6 +23,16 @@ function band(score) {
   return 'low';
 }
 
+// Русское склонение: plural(2,'отзыв','отзыва','отзывов') → «отзыва».
+function plural(n, one, few, many) {
+  const abs = Math.abs(n) % 100;
+  const n1 = abs % 10;
+  if (abs > 10 && abs < 20) return many;
+  if (n1 > 1 && n1 < 5) return few;
+  if (n1 === 1) return one;
+  return many;
+}
+
 // Короткое имя бренда: отсекаем описание после « — », « | », «·» и хвостовую пунктуацию.
 function shortName(name) {
   let s = String(name || '').split(/\s[—–-]\s|[|·]/)[0].trim();
@@ -77,16 +87,20 @@ function renderBusiness(biz, reviews) {
   const cons = ai && Array.isArray(ai.cons) ? ai.cons : [];
   const rating = Number(biz.avg_ratings || 0).toFixed(1);
   const reviewUrl = biz.url + '/review';
+  const total = Number(biz.total_reviews || 0);
+  const noReviews = total === 0;
 
   $('#root').innerHTML = `
     <div class="hd">
-      <div class="circle ${b}">${Number(biz.trust_score).toFixed(1)}</div>
+      <div class="circle ${noReviews ? 'none' : b}">${noReviews ? '—' : Number(biz.trust_score).toFixed(1)}</div>
       <div class="hd-info">
         <div class="hd-name">
           <span class="name-txt">${esc(shortName(biz.name))}</span>
           ${biz.is_verified ? '<span class="verified" title="Проверено"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/></svg></span>' : ''}
         </div>
-        <div class="hd-meta"><span class="stars">${starsHtml(rating)}</span> ${rating}/5 · ${biz.total_reviews} отзывов</div>
+        <div class="hd-meta">${noReviews
+          ? 'Оценки пока нет'
+          : `<span class="stars">${starsHtml(rating)}</span> ${rating}/5 · ${total} ${plural(total, 'отзыв', 'отзыва', 'отзывов')}`}</div>
       </div>
     </div>
 
@@ -100,7 +114,7 @@ function renderBusiness(biz, reviews) {
     ${renderReviews(reviews)}
 
     <div class="rate">
-      <div class="rate-t">Поделитесь мнением об этом сайте</div>
+      <div class="rate-t">${noReviews ? 'Станьте первым, кто оценит этот сайт' : 'Поделитесь мнением об этом сайте'}</div>
       <div class="picker" id="picker">
         ${[1, 2, 3, 4, 5].map((i) => `<span data-v="${i}">★</span>`).join('')}
       </div>

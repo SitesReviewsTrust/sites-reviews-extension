@@ -34,6 +34,7 @@ a { color: var(--primary); text-decoration: none; }
 .circle.high { background: linear-gradient(140deg, #2ed37f, #1c9c5d); box-shadow: 0 0 0 4px var(--ring-high); }
 .circle.mid { background: linear-gradient(140deg, #ffc255, #f59e0b); box-shadow: 0 0 0 4px var(--ring-mid); }
 .circle.low { background: linear-gradient(140deg, #f6584f, #dc2626); box-shadow: 0 0 0 4px var(--ring-low); }
+.circle.none { background: linear-gradient(140deg, #aab4c0, #8a95a3); box-shadow: 0 0 0 4px rgba(148, 163, 184, .16); font-size: 26px; }
 .hd-info { flex: 1; min-width: 0; }
 .hd-name { font-weight: 700; font-size: 15px; line-height: 1.2; display: flex; align-items: center; gap: 6px; }
 .hd-name .name-txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
