@@ -124,13 +124,35 @@ function renderBusiness(biz, reviews) {
 }
 
 function renderNotFound(domain) {
-  const submitUrl = 'https://sites.reviews/businesses/add?website=' + encodeURIComponent(domain);
+  const fallbackUrl = 'https://sites.reviews/businesses/add?website=' + encodeURIComponent(domain);
   $('#root').innerHTML = `
     <div class="nf">
       <div class="dom">${esc(domain)}</div>
-      <div class="hint">Сайт пока не в каталоге Sites.Reviews</div>
-      <a class="btn primary" style="display:inline-block;flex:none;padding:9px 18px" href="${esc(submitUrl)}" target="_blank" rel="noopener">Добавить и оставить отзыв</a>
+      <div class="hint">Об этом сайте ещё нет отзывов.<br>Оставьте первый — и он появится в каталоге.</div>
+      <button class="btn primary" id="firstReview" style="flex:none; padding:11px 20px">Оставить первый отзыв</button>
     </div>`;
+
+  const btn = $('#firstReview');
+  const openTab = (url) => { chrome.tabs.create({ url }); window.close(); };
+  btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    btn.style.opacity = '.7';
+    btn.textContent = 'Создаём карточку…';
+    try {
+      const r = await fetch(`${API}/business`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ domain }),
+      });
+      const data = await r.json().catch(() => null);
+      // Успех (создан или уже был) → сразу на форму первого отзыва.
+      if (r.ok && data && data.review_url) { openTab(data.review_url); return; }
+      // Иначе — обычная форма добавления как запасной путь.
+      openTab(fallbackUrl);
+    } catch (e) {
+      openTab(fallbackUrl);
+    }
+  });
 }
 
 function renderMessage(text) {

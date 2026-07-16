@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Sites.Reviews — Trust Score",
   "short_name": "Sites.Reviews",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Показывает Trust Score сайта из каталога Sites.Reviews при заходе на любой домен.",
   "permissions": [
     "tabs",
