@@ -57,11 +57,6 @@ GET https://sites.reviews/api/public/v1/check?domain=<HOSTNAME>
 
 Весь код — open source MIT: https://github.com/SitesReviewsTrust/sites-reviews-extension. Любой может проверить, что мы реально делаем.
 
-## Контакт
-
-Вопросы по privacy: privacy@sites.reviews
-General support: support@sites.reviews
-
 ## Изменения
 
 Все изменения этой политики коммитятся в git с timestamp — смотрите [git history](https://github.com/SitesReviewsTrust/sites-reviews-extension/commits/main/docs/PRIVACY.md).
